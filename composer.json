@@ -1,0 +1,31 @@
+{
+    "name": "channor/php-tripletex",
+    "description": "A PHP SDK to work with Tripletex API",
+    "keywords": ["tripletex", "api"],
+    "license": "MIT",
+    "homepage": "https://github.com/channor/php-tripletex",
+    "authors": [
+        {
+            "name": "Christian Andreassen",
+            "email": "candreassen@protonmail.com"
+        }
+    ],
+    "require": {
+        "psr/http-message": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "squizlabs/php_codesniffer": "^3.6",
+        "friendsofphp/php-cs-fixer": "^3.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Channor\\Tripletex\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Channor\\Tripletex\\Test\\": "tests/"
+        }
+    }
+}
