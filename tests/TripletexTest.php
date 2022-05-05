@@ -25,4 +25,19 @@ class TripletexTest extends TestCase
         $this->assertTrue($tripletex->getClient()->getHttpClient() instanceof ClientInterface);
         $this->assertSame($tripletex->getClient()->getBasePath(), 'https://tripletex.no/v2');
     }
+
+    public function testSetTokenAndExpirationDateInApp()
+    {
+        $app = new TripletexApp('secret_consumer_token', 'secret_employee_token');
+        $tripletex = new Tripletex($app);
+
+        $tripletex->getApp()->setToken('secret_session_token');
+        $tripletex->getApp()->setExpirationDate(new \DateTime('+3 weeks'));
+
+        $this->assertSame($tripletex->getApp()->getToken(), 'secret_session_token');
+        $this->assertSame(
+            $tripletex->getApp()->getExpirationDate()->format('Y-m-d'),
+            (new \DateTime('+3 weeks'))->format('Y-m-d')
+        );
+    }
 }
