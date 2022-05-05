@@ -19,6 +19,7 @@ class TripletexTest extends TestCase
         $this->assertSame($tripletex->getApp()->getConsumerToken(), 'secret_consumer_token');
         $this->assertSame($tripletex->getApp()->getEmployeeToken(), 'secret_employee_token');
         $this->assertNull($tripletex->getApp()->getToken());
+        $this->assertFalse($tripletex->getApp()->hasValidToken());
         $this->assertNull($tripletex->getApp()->getExpirationDate());
 
         $this->assertTrue($tripletex->getClient() instanceof TripletexClient);
@@ -39,5 +40,6 @@ class TripletexTest extends TestCase
             $tripletex->getApp()->getExpirationDate()->format('Y-m-d'),
             (new \DateTime('+3 weeks'))->format('Y-m-d')
         );
+        $this->assertTrue($tripletex->getApp()->hasValidToken());
     }
 }

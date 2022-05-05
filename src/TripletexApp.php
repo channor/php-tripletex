@@ -89,6 +89,27 @@ class TripletexApp
         return $this;
     }
 
+    public function hasValidToken(): bool
+    {
+        if($this->token === null || !$this->expirationDate instanceof \DateTimeInterface) {
+            $this->clearToken();
+
+            return false;
+        }
+
+        if(is_string($this->token) && (new \DateTime())->format('Y-m-d') < $this->expirationDate->format('Y-m-d')) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function clearToken()
+    {
+        $this->token = null;
+        $this->expirationDate = null;
+    }
+
     /**
      * @return \DateTimeInterface|null
      */
