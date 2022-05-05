@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Channor\Tripletex;
 
+use Channor\Tripletex\Resource\TokenSession;
 use Channor\Tripletex\TripletexApp;
 use Channor\Tripletex\TripletexClient;
 
@@ -35,5 +36,10 @@ class Tripletex
     public function getClient(): TripletexClient
     {
         return $this->client;
+    }
+
+    public function tokenSession(): TokenSession
+    {
+        return new TokenSession($this);
     }
 }
