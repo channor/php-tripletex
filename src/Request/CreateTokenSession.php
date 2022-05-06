@@ -30,6 +30,6 @@ class CreateTokenSession extends TripletexRequest
 
         $response = $this->sendRequest($clientRequest, SessionTokenModel::class);
 
-        return $reponse;
+        return $response;
     }
 }
