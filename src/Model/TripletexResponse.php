@@ -76,7 +76,7 @@ class TripletexResponse
 
     public function getPrettyBody()
     {
-        return $this->prettyBody
+        return $this->prettyBody;
     }
 
     public function getHttpStatusCode()
