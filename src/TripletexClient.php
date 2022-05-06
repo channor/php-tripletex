@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Channor\Tripletex;
 
+use Channor\Tripletex\Exception\TripletexException;
 use Channor\Tripletex\Model\TripletexResponse;
 use Channor\Tripletex\Model\TripletexResponseSingle;
 use Psr\Http\Client\ClientInterface;
@@ -34,7 +35,7 @@ class TripletexClient
         return $this->testEnvironment === false ? static::BASE_PATH : static::TEST_BASE_PATH;
     }
 
-    public function makeResponse(ResponseInterface $response, $responseModel, $request = null): TripletexResponse
+    public function makeResponse(ResponseInterface $response, $responseModel, $request = null)
     {
         $tripletexResponse = new TripletexResponse();
         $tripletexResponse->setBody($response->getBody()->getContents())
@@ -43,6 +44,10 @@ class TripletexClient
             ->setRequest($request);
 
         $body = $tripletexResponse->getDecodedBody();
+
+        if($response->getStatusCode() >= 400 && $response->getStatusCode() <= 500) {
+            return new TripletexException($body['code'] . ' - ' . $body['developerMessage']);
+        }
 
         if (isset($body['value'])) {
             $wrapper = new TripletexResponseSingle($body['value'], $responseModel);

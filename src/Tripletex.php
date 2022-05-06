@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Channor\Tripletex;
 
+use Channor\Tripletex\Resource\Employee;
 use Channor\Tripletex\Resource\TokenSession;
 use Channor\Tripletex\TripletexApp;
 use Channor\Tripletex\TripletexClient;
@@ -61,5 +62,10 @@ class Tripletex
     public function tokenSession(): TokenSession
     {
         return new TokenSession($this);
+    }
+
+    public function employee(): Employee
+    {
+        return new Employee($this);
     }
 }

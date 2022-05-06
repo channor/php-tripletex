@@ -1,3 +1,6 @@
+local/
 html/
 .phpunit.cache/
 /vendor/
+# JetBrains, aka PHPStorm, IntelliJ IDEA
+.idea/*

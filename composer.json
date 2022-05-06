@@ -32,5 +32,9 @@
         "psr-4": {
             "Channor\\Tripletex\\Test\\": "tests/"
         }
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit",
+        "test-cs" : "./vendor/bin/phpcs src/"
     }
 }
