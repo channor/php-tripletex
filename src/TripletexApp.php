@@ -127,4 +127,9 @@ class TripletexApp
 
         return $this;
     }
+
+    public function getEncodedToken()
+    {
+        return base64_encode(0 . ':' . $this->getToken());
+    }
 }
