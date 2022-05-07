@@ -44,7 +44,7 @@ class TripletexRequest
     }
 
     /**
-     * @todo Make a better exception to expplane the error.
+     * @todo Make a better exception to explain the error.
      * @param \Psr\Http\Message\RequestInterface $clientRequest The request to send
      * @param bool                               $auth          If the request needs authentication
      * @return mixed

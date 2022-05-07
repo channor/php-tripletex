@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Channor\Tripletex\Resource;
 
+use Channor\Tripletex\Request\CreateEmployee;
 use Channor\Tripletex\Request\GetEmployee;
 use Channor\Tripletex\Request\ListEmployee;
 
@@ -20,5 +21,12 @@ class Employee extends ResourceBase
         $request = new ListEmployee($this->getService());
 
         return $request->make($params);
+    }
+
+    public function create(array $data)
+    {
+        $request = new CreateEmployee($this->getService());
+
+        return $request->make($data);
     }
 }
