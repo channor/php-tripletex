@@ -11,7 +11,7 @@ class TripletexResponseMultiple
 
     protected int $count;
 
-    protected string $versionDigest;
+    protected ?string $versionDigest;
 
     protected $values = [];
 
@@ -97,7 +97,7 @@ class TripletexResponseMultiple
     /**
      * @return string
      */
-    public function getVersionDigest(): string
+    public function getVersionDigest(): ?string
     {
         return $this->versionDigest;
     }
@@ -105,7 +105,7 @@ class TripletexResponseMultiple
     /**
      * @param string $versionDigest
      */
-    public function setVersionDigest(string $versionDigest): self
+    public function setVersionDigest(?string $versionDigest): self
     {
         $this->versionDigest = $versionDigest;
         return $this;

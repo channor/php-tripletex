@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Channor\Tripletex\Request;
 
-use Channor\Tripletex\Model\EmployeeModel;
+use Channor\Tripletex\Model\SubscriptionModel;
 
-class ListEmployee extends TripletexRequest
+class ListSubscription extends TripletexRequest
 {
-    const REQUEST_PATH = '/employee';
+    const REQUEST_PATH = '/event/subscription';
 
     const REQUEST_METHOD = 'GET';
 
@@ -23,7 +23,7 @@ class ListEmployee extends TripletexRequest
             $this->getPath() . '?' . http_build_query($params),
         );
 
-        $response = $this->sendRequest($clientRequest, EmployeeModel::class);
+        $response = $this->sendRequest($clientRequest, SubscriptionModel::class);
 
         return $response;
     }

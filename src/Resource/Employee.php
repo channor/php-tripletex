@@ -17,7 +17,7 @@ class Employee extends ResourceBase
         return $request->make($id, $fields);
     }
 
-    public function list(array $params)
+    public function list(array $params = [])
     {
         $request = new ListEmployee($this->getService());
 

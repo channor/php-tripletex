@@ -59,7 +59,7 @@ class TripletexClient
 
         if (isset($body['value'])) {
             $wrapper = new TripletexResponseSingle($body['value'], $responseModel);
-        } elseif ($body['values']) {
+        } elseif (isset($body['values'])) {
             $wrapper = new TripletexResponseMultiple($body, $responseModel);
         } else {
             $wrapper = true;
