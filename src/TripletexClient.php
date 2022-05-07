@@ -57,10 +57,6 @@ class TripletexClient
 
         $body = $tripletexResponse->getDecodedBody();
 
-        if($response->getStatusCode() >= 400 && $response->getStatusCode() <= 500) {
-            return new TripletexException($body['code'] . ' - ' . $body['developerMessage']);
-        }
-
         if (isset($body['value'])) {
             $wrapper = new TripletexResponseSingle($body['value'], $responseModel);
         } elseif ($body['values']) {

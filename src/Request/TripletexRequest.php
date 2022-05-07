@@ -6,6 +6,7 @@ namespace Channor\Tripletex\Request;
 use Channor\Tripletex\Exception\TripletexException;
 use Channor\Tripletex\Tripletex;
 use Exception;
+use GuzzleHttp\Exception\BadResponseException;
 use Psr\Http\Message\RequestInterface as ClientRequestInterface;
 
 class TripletexRequest
@@ -65,7 +66,7 @@ class TripletexRequest
         $response = $this->getService()->getClient()->getHttpClient()->sendRequest($clientRequest);
 
         if($response->getStatusCode() >= 400 && $response->getStatusCode() <= 500) {
-            throw new \Exception('An error occurred.');
+            throw new BadResponseException('An error occurred', $clientRequest, $response);
         }
 
         return $this->getService()->getClient()->makeResponse($response, $responseModel, $clientRequest);
