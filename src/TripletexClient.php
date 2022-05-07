@@ -8,6 +8,7 @@ use Channor\Tripletex\Model\TripletexResponse;
 use Channor\Tripletex\Model\TripletexResponseSingle;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\RequestInterface as ClientRequestInterface;
 
 class TripletexClient
 {
@@ -35,8 +36,18 @@ class TripletexClient
         return $this->testEnvironment === false ? static::BASE_PATH : static::TEST_BASE_PATH;
     }
 
-    public function makeResponse(ResponseInterface $response, $responseModel, $request = null)
-    {
+    /**
+     * @param \Psr\Http\Message\ResponseInterface $response
+     * @param class $responseModel The model to wrap the body inside. I.e. EmployeeModel::class
+     * @param ClientRequestInterface|null $request
+     * @return TripletexException|TripletexResponse
+     * @todo Create exception for status code 400-500.
+     */
+    public function makeResponse(
+        ResponseInterface $response,
+        $responseModel,
+        ?ClientRequestInterface $request = null
+    ): TripletexException|TripletexResponse {
         $tripletexResponse = new TripletexResponse();
         $tripletexResponse->setBody($response->getBody()->getContents())
             ->setHeaders($response->getHeaders())

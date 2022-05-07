@@ -8,9 +8,10 @@ class Dot
     /**
      * Get value from array with a dot separated path to array key.
      *
+     * @todo More reliable null return.
      * @param array $data An array of data.
      * @param string $path A dot separated string with the path to the array key.
-     * @return mixed|null
+     * @return string|array|null
      */
     public static function get(array $data, string $path)
     {

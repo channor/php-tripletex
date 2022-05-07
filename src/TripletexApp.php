@@ -104,7 +104,10 @@ class TripletexApp
         return false;
     }
 
-    public function clearToken()
+    /**
+     * @return void
+     */
+    public function clearToken(): void
     {
         $this->token = null;
         $this->expirationDate = null;
@@ -128,6 +131,10 @@ class TripletexApp
         return $this;
     }
 
+    /**
+     * @todo Dynamicly set the Tripletex companyId as username. 0 means the company of the employee.
+     * @return string Encoded token for header authentication.
+     */
     public function getEncodedToken()
     {
         return base64_encode(0 . ':' . $this->getToken());

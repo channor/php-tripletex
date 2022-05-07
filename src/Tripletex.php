@@ -11,12 +11,25 @@ use Channor\Tripletex\Utility\Dot;
 
 class Tripletex
 {
+    /**
+     * @var \Channor\Tripletex\TripletexApp
+     */
     protected $app;
 
+    /**
+     * @var \Channor\Tripletex\TripletexClient
+     */
     protected $client;
 
+    /**
+     * @var array|string[]
+     */
     protected $config = [];
 
+    /**
+     * @param \Channor\Tripletex\TripletexApp $app
+     * @param array $config
+     */
     public function __construct(TripletexApp $app, array $config = [])
     {
         $config = array_merge(
@@ -40,16 +53,27 @@ class Tripletex
         $this->client = new TripletexClient(new $config['http_client_class'](), $testEnvironment);
     }
 
+    /**
+     * @return \Channor\Tripletex\TripletexApp
+     */
     public function getApp(): TripletexApp
     {
         return $this->app;
     }
 
+    /**
+     * @return \Channor\Tripletex\TripletexClient
+     */
     public function getClient(): TripletexClient
     {
         return $this->client;
     }
 
+    /**
+     * @param string $path Dot notation, path to config
+     * @return array|string[]|null
+     * @throws \Exception If $this->config is not an array and path is not a string.
+     */
     public function getConfig(string $path = '')
     {
         if (!empty($path)) {
@@ -59,11 +83,17 @@ class Tripletex
         return $this->config;
     }
 
+    /**
+     * @return TokenSession
+     */
     public function tokenSession(): TokenSession
     {
         return new TokenSession($this);
     }
 
+    /**
+     * @return Employee
+     */
     public function employee(): Employee
     {
         return new Employee($this);
