@@ -6,6 +6,7 @@ namespace Channor\Tripletex;
 use Channor\Tripletex\Exception\TripletexException;
 use Channor\Tripletex\Model\TripletexResponse;
 use Channor\Tripletex\Model\TripletexResponseSingle;
+use Channor\Tripletex\Model\TripletexResponseMultiple;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\RequestInterface as ClientRequestInterface;
@@ -63,7 +64,7 @@ class TripletexClient
         if (isset($body['value'])) {
             $wrapper = new TripletexResponseSingle($body['value'], $responseModel);
         } elseif ($body['values']) {
-            $wrapper = new TripletexResponseMultiple($body['values'], $responseModel);
+            $wrapper = new TripletexResponseMultiple($body, $responseModel);
         } else {
             $wrapper = true;
         }
