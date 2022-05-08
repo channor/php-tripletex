@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Channor\Tripletex;
 
 use Channor\Tripletex\Resource\Employee;
+use Channor\Tripletex\Resource\Project;
 use Channor\Tripletex\Resource\Subscription;
 use Channor\Tripletex\Resource\TokenSession;
 use Channor\Tripletex\TripletexApp;
@@ -101,5 +102,13 @@ class Tripletex
     public function subscription(): Subscription
     {
         return new Subscription($this);
+    }
+
+    /**
+     * @return Project
+     */
+    public function project(): Project
+    {
+        return new Project($this);
     }
 }
