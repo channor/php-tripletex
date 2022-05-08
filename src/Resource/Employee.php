@@ -10,14 +10,14 @@ use Channor\Tripletex\Request\UpdateEmployee;
 
 class Employee extends ResourceBase
 {
-    public function get(int $id, array $fields = ['*'])
+    public function get(int $id, array $fields = ['fields' => '*'])
     {
         $request = new GetEmployee($this->getService());
 
         return $request->make($id, $fields);
     }
 
-    public function list(array $params = [])
+    public function list(array $params = ['fields' => '*'])
     {
         $request = new ListEmployee($this->getService());
 
