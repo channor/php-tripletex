@@ -11,9 +11,8 @@ $app = new \Channor\Tripletex\TripletexApp(
     'secret_employee_key'
 );
 
-$service = new \Channor\Tripletex\Tripletex($app, ['test_environment' => true]);
+$service = new \Channor\Tripletex\Tripletex($app);
 ```
-`'test_environment' => true` sets the host to `api.tripletex.io` for the API test environment.
 
 ```php
 $session = $service->tokenSession()->create();
@@ -26,6 +25,11 @@ $service->getApp()
 
 var_dump($service->getApp()->hasValidToken()); // returns true. Ready for other requests.
 ```
+By default, requests are sent to `https://tripletex.no/v2'`. By setting the testEnvironment with
+`$service->getClient()->setTestEnvironment(true)`, requests will use the `TEST_BASE_PATH = 'https://api.tripletex.io/v2`.
+
+Do not set it to `true`, or don't set it at all, on production. Default is `false`.
+
 ### Response
 In exception is not thrown, the response is wrapped in `TripletexResponse > TripletexResponseMultiple OR TripletexResponseSingle > Model (i.e. EmployeeModel)`.
 

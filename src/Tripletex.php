@@ -42,16 +42,11 @@ class Tripletex
             $config
         );
 
-        $testEnvironment = false;
-        if(isset($config['test_environment']) && $config['test_environment'] === true) {
-            $testEnvironment = true;
-        }
-
         $this->config = $config;
 
         $this->app = $app;
 
-        $this->client = new TripletexClient(new $config['http_client_class'](), $testEnvironment);
+        $this->client = new TripletexClient(new $config['http_client_class']());
     }
 
     /**

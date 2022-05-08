@@ -21,10 +21,9 @@ class TripletexClient
 
     protected $testEnvironment = false;
 
-    public function __construct(ClientInterface $httpClient, bool $testEnvironment = false)
+    public function __construct(ClientInterface $httpClient)
     {
         $this->httpClient = $httpClient;
-        $this->testEnvironment = $testEnvironment;
     }
 
     public function getHttpClient(): ClientInterface
@@ -35,6 +34,18 @@ class TripletexClient
     public function getBasePath(): string
     {
         return $this->testEnvironment === false ? static::BASE_PATH : static::TEST_BASE_PATH;
+    }
+
+    public function setTestEnvironment(bool $bool = false)
+    {
+        if ($bool === true)
+        {
+            $this->testEnvironment = true;
+        } else {
+            $this->testEnvironment = false;
+        }
+
+        return $this;
     }
 
     /**
