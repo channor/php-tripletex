@@ -44,4 +44,27 @@ class TripletexClientTest extends TestCase
         $headerContentType = $headers['Content-type'][0];
         $this->assertSame($headerContentType, 'application/json');
     }
+
+    public function testGetBasePathProduction()
+    {
+        $service = new Tripletex(new TripletexApp('secret', 'secret'));
+
+        $this->assertSame('https://tripletex.no/v2', $service->getClient()->getBasePath());
+    }
+
+    public function testGetBasePathTesting()
+    {
+        $service = new Tripletex(new TripletexApp('secret', 'secret'));
+
+        $service->getClient()->setTestEnvironment(true);
+
+        $this->assertSame('https://api.tripletex.io/v2', $service->getClient()->getBasePath());
+    }
+
+    public function testGetHttpClient()
+    {
+        $service = new Tripletex(new TripletexApp('secret', 'secret'));
+
+        $this->assertTrue($service->getClient()->getHttpClient() instanceof ClientInterface);
+    }
 }
