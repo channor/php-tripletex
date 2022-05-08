@@ -33,7 +33,7 @@ class TripletexRequest
         return static::REQUEST_METHOD;
     }
 
-    public function getPath(?int $id = null)
+    public function getPath($id = null)
     {
         $path = $this->getService()->getClient()->getBasePath() . $this->getRequestPath();
 
